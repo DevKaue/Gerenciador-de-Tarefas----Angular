@@ -1,0 +1,82 @@
+<div class="tasks-container">
+    <div class="tasks-header">
+      <h1>Minhas Tarefas</h1>
+      <button class="btn-add" [routerLink]="['/tasks/new']">+ Nova Tarefa</button>
+    </div>
+    
+    @if (loading()) {
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Carregando tarefas...</p>
+      </div>
+    }
+    
+    @if (error()) {
+      <div class="error-message">
+        <p>{{ error() }}</p>
+        <button class="btn-retry" (click)="loadTasks()">Tentar novamente</button>
+      </div>
+    }
+    
+    @if (!loading() && tasks().length === 0 && !error()) {
+      <div class="empty-state">
+        <p>Você não tem tarefas cadastradas.</p>
+        <button class="btn-add-first" [routerLink]="['/tasks/new']">Criar primeira tarefa</button>
+      </div>
+    }
+    
+    @if (tasks().length > 0) {
+      <div class="task-list">
+        @for (task of tasks(); track task.id) {
+          <div class="task-item" [class.completed]="task.completed">
+            <!-- <div class="task-checkbox">
+              <input 
+                type="checkbox" 
+                [checked]="task.completed" 
+                (change)="toggleTaskStatus(task)"
+                [id]="'task-' + task.id"
+              />
+            </div> -->
+            
+            <div class="task-content">
+              <label [for]="'task-' + task.id">
+                <h3>{{ task.title }}</h3>
+              </label>
+              @if (task.description) {
+                <p class="task-description">{{ task.description }}</p>
+              }
+              <!-- <div class="task-meta">
+                @if (task.dueDate) {
+                  <span class="due-date">
+                    Vencimento: {{ task.dueDate | date:'dd/MM/yyyy' }}
+                  </span>
+                }
+                @if (task.priority) {
+                  <span class="priority-badge" [class]="task.priority">
+                    {{ getPriorityLabel(task.priority) }}
+                  </span>
+                }
+              </div> -->
+            </div>
+            
+            <div class="task-actions">
+              <button 
+                class="btn-edit" 
+                [routerLink]="['/tasks', task.id, 'edit']"
+                title="Editar tarefa"
+              >
+                Editar
+              </button>
+              <button 
+                class="btn-delete" 
+                (click)="confirmDeleteTask(task)"
+                title="Excluir tarefa"
+              >
+                Excluir
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
