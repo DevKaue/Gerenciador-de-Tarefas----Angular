@@ -1,59 +1,45 @@
-# GerenteTarefas
+# Gerenciador de Tarefas com Autenticação (Angular 19)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+Este é um projeto de gerenciador de tarefas utilizando **Angular 19**, onde o usuário pode fazer login, visualizar tarefas e gerenciar suas tarefas (criar, editar e excluir). O projeto inclui autenticação utilizando **JWT** para proteger as rotas de tarefas.
 
-## Development server
+## Funcionalidades
 
-To start a local development server, run:
+- **Login:** O usuário pode se autenticar com um e-mail de usuário e senha.
+- **Autenticação:** O login utiliza **JWT** (JSON Web Token) para autenticação e autorização de acesso.
+- **Gerenciamento de Tarefas:** O usuário pode criar, listar, editar e excluir tarefas.
+- **Proteção de Rotas:** A página de tarefas é protegida por um **Auth Guard** para garantir que apenas usuários autenticados possam acessá-la.
 
-```bash
-ng serve
-```
+## Tecnologias Utilizadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Frontend:** Angular 19
+- **Backend:** Python.
+- **Autenticação:** JWT (JSON Web Token)
+- **Estilo:** CSS básico (pode ser modificado para SCSS ou outra ferramenta conforme preferido).
 
-## Code scaffolding
+## Pré-requisitos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 
-```bash
-ng generate component component-name
-```
+- [Python]() ()
+- [Angular CLI](https://angular.io/cli) (última versão instalada com `npm install -g @angular/cli`)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Como Executar o Projeto
 
-```bash
-ng generate --help
-```
+1. **Clonar o repositório:**
 
-## Building
+   ```bash
+   git clone 
+   cd gerente_tarefas
 
-To build the project run:
 
-```bash
-ng build
-```
+### Explicação do README
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Funcionalidades**: Descreve as principais funcionalidades do projeto.
+- **Tecnologias Utilizadas**: Apresenta as principais tecnologias do projeto, como Angular 19 e JWT.
+- **Como Executar o Projeto**: Passo a passo para rodar o projeto localmente.
+- **Estrutura do Projeto**: Organiza os arquivos e pastas principais do código.
+- **Endpoints da API**: Exemplos dos endpoints que o backend deve oferecer.
+- **Como Usar o Projeto**: Instruções sobre como interagir com a aplicação.
+- **Personalização**: Sugestões de melhorias no estilo e funcionalidades.
+- **Contribuindo**: Orientações para quem quiser contribuir com o projeto.
+- **Licença**: A licença do projeto (no caso, MIT).
