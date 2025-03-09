@@ -1,0 +1,75 @@
+<div class="form-container">
+    <h2>{{ isEditMode ? 'Editar' : 'Nova' }} Tarefa</h2>
+    
+    <div *ngIf="loading" class="spinner-container">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Carregando...</span>
+        </div>
+      </div>
+    
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+    
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Título</label>
+        <input 
+          type="text" 
+          id="title" 
+          formControlName="title" 
+          class="form-control" 
+          [class.is-invalid]="submitted && f['title'].errors"
+        />
+        @if (submitted && f['title'].errors) {
+          <div class="invalid-feedback">
+            Título é obrigatório
+          </div>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea 
+          id="description" 
+          formControlName="description" 
+          class="form-control" 
+          rows="3"
+        ></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="dueDate">Data de Vencimento</label>
+        <input 
+          type="date" 
+          id="dueDate" 
+          formControlName="dueDate" 
+          class="form-control" 
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="priority">Prioridade</label>
+        <select 
+          id="priority" 
+          formControlName="priority" 
+          class="form-control"
+        >
+          <option value="baixa">Baixa</option>
+          <option value="média">Média</option>
+          <option value="alta">Alta</option>
+        </select>
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" [disabled]="loading" class="btn btn-primary">
+          @if (loading) {
+            <span class="spinner-border spinner-border-sm me-1"></span>
+          }
+          {{ isEditMode ? 'Atualizar' : 'Criar' }}
+        </button>
+        <button type="button" routerLink="/tasks" class="btn btn-secondary">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>

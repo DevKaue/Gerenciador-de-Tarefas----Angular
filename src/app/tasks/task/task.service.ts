@@ -21,15 +21,15 @@ export class TaskService {
       );
   }
   
-//   getTaskById(id: number): Observable<Task> {
-//     return this.http.get<Task>(`${this.API_URL}/${id}`)
-//       .pipe(
-//         catchError(error => {
-//           console.error(`Erro ao obter tarefa ${id}:`, error);
-//           return throwError(() => new Error('Falha ao carregar detalhes da tarefa'));
-//         })
-//       );
-//   }
+  getTaskById(id: number): Observable<Task> {
+    return this.http.get<Task>(`${this.API_URL}/GetTasksById/${id}`)
+      .pipe(
+        catchError(error => {
+          console.error(`Erro ao obter tarefa ${id}:`, error);
+          return throwError(() => new Error('Falha ao carregar detalhes da tarefa'));
+        })
+      );
+  }
   
   createTask(task: Task): Observable<Task> {
     return this.http.post<Task>(`${this.API_URL}/CreateTasks`, task)
