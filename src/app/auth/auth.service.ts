@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { Observable, tap, catchError, throwError } from 'rxjs';
 import { User } from './shared/models/user.model';
 import { LoginRequest, LoginResponse } from './shared/models/login.model';
+import { environmentLogin } from '../../envirement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly API_URL = 'http://127.0.0.1:8001';
-  
+  private API_URL = environmentLogin.apiUrl;
+  user: any;
   // Usando signals para estado de autenticação
   private currentUserSignal = signal<User | null>(null);
   public currentUser = computed(() => this.currentUserSignal());
@@ -19,19 +20,21 @@ export class AuthService {
     private http: HttpClient,
     private router: Router
   ) {
-    this.loadUserToStorage();
+    // this.loadUserToStorage();
   }
   
   private loadUserToStorage(): void {
-    const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) {
-      try {
-        this.currentUserSignal.set(JSON.parse(storedUser));
-      } catch (error) {
-        console.error('Erro ao carregar usuário do localStorage:', error);
-        localStorage.removeItem('currentUser');
+    // user = localStorage.setItem('user',this.user);
+    const storedUser = localStorage.getItem('user');
+    if(typeof window !== 'undefined')
+      if (storedUser) {
+        try {
+          this.currentUserSignal.set(JSON.parse(storedUser));
+        } catch (error) {
+          console.error('Erro ao carregar usuário do localStorage:', error);
+          localStorage.removeItem('currentUser');
+        }
       }
-    }
   }
   
   login(credentials: LoginRequest): Observable<LoginResponse> {
@@ -41,8 +44,8 @@ export class AuthService {
           const user: User = {
             token: response.token
           };
-          
-          localStorage.setItem('currentUser', JSON.stringify(user));
+
+          localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSignal.set(user);
         }),
         catchError(error => {
@@ -53,9 +56,9 @@ export class AuthService {
   }
   
   logout(): void {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('user');
     this.currentUserSignal.set(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'], { replaceUrl: true });
   }
   
   isAuthenticated(): boolean {

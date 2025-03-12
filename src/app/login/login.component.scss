@@ -1,9 +1,9 @@
 .login-container {
-    max-width: 400px;
+    width: 400px;
     margin: 40px auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   }
   
   h2 {
@@ -23,7 +23,7 @@
   .form-control {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     border-radius: 4px;
   }
   

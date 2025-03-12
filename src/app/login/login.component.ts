@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule],
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -18,16 +19,17 @@ export class LoginComponent {
   constructor(
     // private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private fb: FormBuilder
   ) {
-    // this.loginForm = this.fb.group({
-    //   email: ['', Validators.required],
-    //   senha: ['', Validators.required]
-    // });
-    this.loginForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl('')
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      senha: ['', Validators.required]
     });
+    // this.loginForm = new FormGroup({
+    //   email: new FormControl(''),
+    //   password: new FormControl('')
+    // });
   }
   
   get infoLogin() { return this.loginForm.controls; }
@@ -44,8 +46,12 @@ export class LoginComponent {
       email: this.infoLogin['email'].value,
       senha: this.infoLogin['senha'].value
     }).subscribe({
-      next: () => {
-        this.router.navigate(['/tasks']);
+      next: (response) => {
+        
+        if(response != null)
+          // this.router.navigate(['tasks']);
+        this.router.navigate(['/tasks'], { replaceUrl: true });
+
       },
       error: (err) => {
         this.error = err.message || 'Ocorreu um erro durante o login.';
