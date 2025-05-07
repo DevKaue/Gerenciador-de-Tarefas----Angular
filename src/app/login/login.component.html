@@ -1,40 +1,47 @@
-<div class="login-container">    
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="email">Usuário</label>
-        <input type="text" id="email" formControlName="email" class="form-control" />
-        @if (infoLogin['email'].touched && infoLogin['email'].errors) {
-          <div class="error-message">
-            @if (infoLogin['email'].errors['required']) {
-              <span>Usuário é obrigatório</span>
-            }
-          </div>
-        }
-      </div>
-      
-      <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="senha" id="senha" formControlName="senha" class="form-control" />
-        @if (infoLogin['senha'].touched && infoLogin['senha'].errors) {
-          <div class="error-message">
-            @if (infoLogin['senha'].errors['required']) {
-              <span>Senha é obrigatória</span>
-            }
-          </div>
-        }
-      </div>
-      
-      <div class="form-group">
-        <button type="submit" [disabled]="loading || loginForm.invalid" class="btn-primary">
-          @if (loading) {
-            <span class="spinner"></span>
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+
+    <div class="logo-wrapper">
+      <img src="assets/logo.png" alt="Logo TaskManager" class="logo-img" />
+    </div>
+
+    <h2 class="form-title">Entrar no Sistema</h2>
+
+    <div class="form-group">
+      <label for="email">Usuário</label>
+      <input type="text" id="email" formControlName="email" class="form-control" />
+      @if (infoLogin['email'].touched && infoLogin['email'].errors) {
+        <div class="error-message">
+          @if (infoLogin['email'].errors['required']) {
+            <span>Usuário é obrigatório</span>
           }
-          Entrar
-        </button>
-      </div>
-      
-      @if (error) {
-        <div class="error-alert">{{error}}</div>
+        </div>
       }
-    </form>
-  </div>
+    </div>
+
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" formControlName="senha" class="form-control" />
+      @if (infoLogin['senha'].touched && infoLogin['senha'].errors) {
+        <div class="error-message">
+          @if (infoLogin['senha'].errors['required']) {
+            <span>Senha é obrigatória</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <button type="submit" [disabled]="loading || loginForm.invalid" class="btn-primary">
+        @if (loading) {
+          <span class="spinner"></span>
+        }
+        Entrar
+      </button>
+    </div>
+
+    @if (error) {
+      <div class="error-alert">{{ error }}</div>
+    }
+  </form>
+</div>

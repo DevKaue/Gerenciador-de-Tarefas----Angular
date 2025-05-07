@@ -91,9 +91,11 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-                "glob": "**/*",
-                "input": "public"
-              }
+                  "glob": "**/*",
+                  "input": "public"
+                }
+                // "src/assets",
+                // "src/favicon.ico"
             ],
             "styles": [
               "src/styles.scss"

@@ -17,7 +17,6 @@ export class LoginComponent {
   error = '';
 
   constructor(
-    // private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private fb: FormBuilder
@@ -26,10 +25,6 @@ export class LoginComponent {
       email: ['', Validators.required],
       senha: ['', Validators.required]
     });
-    // this.loginForm = new FormGroup({
-    //   email: new FormControl(''),
-    //   password: new FormControl('')
-    // });
   }
   
   get infoLogin() { return this.loginForm.controls; }
@@ -49,7 +44,6 @@ export class LoginComponent {
       next: (response) => {
         
         if(response != null)
-          // this.router.navigate(['tasks']);
         this.router.navigate(['/tasks'], { replaceUrl: true });
 
       },
