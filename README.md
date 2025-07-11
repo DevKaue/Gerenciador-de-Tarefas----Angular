@@ -40,6 +40,3 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 - **Estrutura do Projeto**: Organiza os arquivos e pastas principais do código.
 - **Endpoints da API**: Exemplos dos endpoints que o backend deve oferecer.
 - **Como Usar o Projeto**: Instruções sobre como interagir com a aplicação.
-- **Personalização**: Sugestões de melhorias no estilo e funcionalidades.
-- **Contribuindo**: Orientações para quem quiser contribuir com o projeto.
-- **Licença**: A licença do projeto (no caso, MIT).
